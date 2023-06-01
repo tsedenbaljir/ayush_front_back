@@ -1,8 +1,8 @@
 module.exports = {
   HOST: "sql.freedb.tech",
-  USER: "freedb_mohs_root",
-  PASSWORD: "J53#8EKd$Bw@b%e",
-  DB: "freedb_mohsdb",
+  USER: "freedb_mohsdb_root",
+  PASSWORD: "hE$b6Y7XZhtmJP4",
+  DB: "freedb_freedb_mohsdb",
   dialect: "mysql",
   pool: {
     max: 5,
