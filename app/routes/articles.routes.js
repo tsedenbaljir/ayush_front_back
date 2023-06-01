@@ -17,14 +17,14 @@ module.exports = (app) => {
     if (req.file) {
       if (req.file.mimetype.startsWith("image")) {
         res.send(
-          "<img width='100%' heigth='100%' src='http://localhost:3001/api/articles/imagesCk/" +
+          "<img width='100%' heigth='100%' src='https://uvs-emneleg.herokuapp.com/api/articles/imagesCk/" +
             req.file.filename +
             "'/>"
         );
       }
       if (req.file.mimetype.startsWith("application")) {
         res.send(
-          "<a href='http://localhost:3001/api/articles/imagesCk/" +
+          "<a href='https://uvs-emneleg.herokuapp.com/api/articles/imagesCk/" +
             req.file.filename +
             "'>Татах</a>"
         );
