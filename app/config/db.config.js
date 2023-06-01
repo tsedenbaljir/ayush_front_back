@@ -1,8 +1,8 @@
 module.exports = {
-  HOST: "sql.freedb.tech",
-  USER: "freedb_mohsdb_root",
-  PASSWORD: "hE$b6Y7XZhtmJP4",
-  DB: "freedb_freedb_mohsdb",
+  HOST: "us-cdbr-east-06.cleardb.net",
+  USER: "b846f265e10945",
+  PASSWORD: "17427019",
+  DB: "heroku_2fdba4a684d2921",
   dialect: "mysql",
   pool: {
     max: 5,
@@ -11,7 +11,7 @@ module.exports = {
     idle: 10000
   }
 };
-
+// mysql://b846f265e10945:17427019@us-cdbr-east-06.cleardb.net/heroku_2fdba4a684d2921?reconnect=true
 // module.exports = {
 //   HOST: "localhost",
 //   USER: "root",
