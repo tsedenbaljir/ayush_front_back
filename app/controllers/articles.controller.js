@@ -113,112 +113,30 @@ exports.findPanigatesAll = (req, res) => {
   const search = req.params.Article_id;
   const { limit, offset } = getPagination(page, size);
 
-  var id = 0;
-  if (search === "nnews") {
-    // console.log(id, search);
-    Articles.findAndCountAll({
-      // Add order conditions here....
-      limit,
-      offset,
-      order: [["createdAt", "DESC"]],
-      include: [
-        {
-          model: Article_ctgr,
-          where: {
-            id: { [Op.notLike]: 0 },
-          },
+  Articles.findAndCountAll({
+    // Add order conditions here....
+    limit,
+    offset,
+    order: [["createdAt", "DESC"]],
+    include: [
+      {
+        model: Article_ctgr,
+        where: {
+          id: search,
         },
-      ],
+      },
+    ],
+  })
+    .then((data) => {
+      const response = getPagingData(data, page, limit);
+      res.send(response);
     })
-      .then((data) => {
-        const response = getPagingData(data, page, limit);
-        res.send(response);
-      })
-      .catch((err) => {
-        res.status(500).send({
-          message:
-            err.message || "Some error occurred while retrieving articless.",
-        });
+    .catch((err) => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving articless.",
       });
-  }
-  if (search === "fnews") {
-    Articles.findAndCountAll({
-      // Add order conditions here....
-      limit,
-      offset,
-      order: [["createdAt", "DESC"]],
-      include: [
-        {
-          model: Article_ctgr,
-          where: {
-            id: { [Op.like]: 2 },
-          },
-        },
-      ],
-    })
-      .then((data) => {
-        const response = getPagingData(data, page, limit);
-        res.send(response);
-      })
-      .catch((err) => {
-        res.status(500).send({
-          message:
-            err.message || "Some error occurred while retrieving articless.",
-        });
-      });
-  }
-  if (search === "mnews") {
-    Articles.findAndCountAll({
-      // Add order conditions here....
-      limit,
-      offset,
-      order: [["createdAt", "DESC"]],
-      include: [
-        {
-          model: Article_ctgr,
-          where: {
-            id: { [Op.like]: 1 },
-          },
-        },
-      ],
-    })
-      .then((data) => {
-        const response = getPagingData(data, page, limit);
-        res.send(response);
-      })
-      .catch((err) => {
-        res.status(500).send({
-          message:
-            err.message || "Some error occurred while retrieving articless.",
-        });
-      });
-  }
-  if (search === "tender") {
-    Articles.findAndCountAll({
-      // Add order conditions here....
-      limit,
-      offset,
-      order: [["createdAt", "DESC"]],
-      include: [
-        {
-          model: Article_ctgr,
-          where: {
-            id: { [Op.like]: 0 },
-          },
-        },
-      ],
-    })
-      .then((data) => {
-        const response = getPagingData(data, page, limit);
-        res.send(response);
-      })
-      .catch((err) => {
-        res.status(500).send({
-          message:
-            err.message || "Some error occurred while retrieving articless.",
-        });
-      });
-  }
+    });
 };
 
 // Retrieve all aboutss from the database.
@@ -239,9 +157,37 @@ exports.menuAll = (req, res) => {
 // Retrieve all aboutss from the database.
 exports.menuArticles = (req, res) => {
   const id = req.params.Menu_id;
-  if (id == 3) {
+  // if (id == 3) {
+  //   var condition = {
+  //     id: { [Op.notLike]: 0 },
+  //   };
+  //   Articles.findAll({
+  //     // Add order conditions here....
+  //     include: [
+  //       {
+  //         model: Article_ctgr,
+  //         attributes: ["id"],
+  //         through: {
+  //           attributes: [],
+  //         },
+  //         where: condition,
+  //       },
+  //     ],
+  //     limit: 6,
+  //     order: [["createdAt", "DESC"]],
+  //   })
+  //     .then((data) => {
+  //       res.send(data);
+  //     })
+  //     .catch((err) => {
+  //       res.status(500).send({
+  //         message:
+  //           err.message || "Some error occurred while retrieving aboutss.",
+  //       });
+  //     });
+  // } else {
     var condition = {
-      id: { [Op.notLike]: 0 },
+      id: { [Op.like]: id },
     };
     Articles.findAll({
       // Add order conditions here....
@@ -267,35 +213,7 @@ exports.menuArticles = (req, res) => {
             err.message || "Some error occurred while retrieving aboutss.",
         });
       });
-  } else {
-    var condition = {
-      id: { [Op.like]: `%${id}%` },
-    };
-    Articles.findAll({
-      // Add order conditions here....
-      include: [
-        {
-          model: Article_ctgr,
-          attributes: ["id"],
-          through: {
-            attributes: [],
-          },
-          where: condition,
-        },
-      ],
-      limit: 6,
-      order: [["createdAt", "DESC"]],
-    })
-      .then((data) => {
-        res.send(data);
-      })
-      .catch((err) => {
-        res.status(500).send({
-          message:
-            err.message || "Some error occurred while retrieving aboutss.",
-        });
-      });
-  }
+  // }
 };
 
 // Retrieve all articless from the database.
@@ -448,7 +366,7 @@ exports.cardnews = (req, res) => {
 exports.bottom = (req, res) => {
   Articles.findAll({
     // Add order conditions here....
-    limit: 3,
+    limit: 4,
     order: [["createdAt", "DESC"]],
   })
     .then((data) => {

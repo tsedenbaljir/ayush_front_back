@@ -1,10 +1,15 @@
 const multer = require("multer");
 const sharp = require("sharp");
 
+function isVideoFile(filename) {
+  const videoExtensions = ['.mp4', '.mov', '.avi', '.wmv', '.mkv', '.flv', '.webm', '.mpeg', '.mpg', '.3gp', '.m4v'];
+  const extension = filename.substring(filename.lastIndexOf('.')).toLowerCase();
+  return videoExtensions.includes(extension);
+}
 const imageFilter = (req, file, cb) => {
   // console.log(file.mimetype.startsWith("application"));
   if (
-    file.mimetype.startsWith("image") ||
+    file.mimetype.startsWith("image") || isVideoFile(file.originalname) ||
     file.mimetype.startsWith("application")
   ) {
     cb(null, true);

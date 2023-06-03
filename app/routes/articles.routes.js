@@ -13,22 +13,8 @@ module.exports = (app) => {
   check.get("/user", articles.findAll);
 
   router.post("/uploads", uploadCkEditor.single("upload"), (req, res) => {
-    console.log(req.file.mimetype);
     if (req.file) {
-      if (req.file.mimetype.startsWith("image")) {
-        res.send(
-          "<img width='100%' heigth='100%' src='https://uvs-emneleg.herokuapp.com/api/articles/imagesCk/" +
-            req.file.filename +
-            "'/>"
-        );
-      }
-      if (req.file.mimetype.startsWith("application")) {
-        res.send(
-          "<a href='https://uvs-emneleg.herokuapp.com/api/articles/imagesCk/" +
-            req.file.filename +
-            "'>Татах</a>"
-        );
-      }
+      res.send(req.file.filename);
     } else {
       res.status(200).send("Энэ файлыг оруулах боломжгүй байна.");
     }
