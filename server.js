@@ -12,6 +12,12 @@ app.use(express.urlencoded({ extended: true }));
 db.sequelize.sync();
 // simple route
 app.get("/", (req, res) => {
+	res.header('X-Frame-Options','SAMEORIGIN');
+	res.header('Access-Control-Allow-Credentials', true);
+	res.header('Access-Control-Allow-Origin', '*');
+	res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE');
+	res.header('Access-Control-Allow-Headers','X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
+	next();
   res.json({ message: "Нэгдсэн эмнэлэгийн API" });
 });
 // routes
