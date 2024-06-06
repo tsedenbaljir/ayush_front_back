@@ -1,21 +1,14 @@
 module.exports = {
-  HOST: "localhost",
-  USER: "root",
-  PASSWORD: "",
-  DB: "my_database",
+  HOST: "us-cdbr-east-06.cleardb.net",
+  USER: "b846f265e10945",
+  PASSWORD: "17427019",
+  DB: "heroku_2fdba4a684d2921",
   dialect: "mysql",
-  port: 3306,
   pool: {
     max: 5,
     min: 0,
     acquire: 30000,
     idle: 10000
-  },
-  dialectOptions: {
-      socketPath: "/var/run/mysqld/mysqld.sock"
-  },
-  define: {
-      paranoid: true
   }
 };
 // mysql://b846f265e10945:17427019@us-cdbr-east-06.cleardb.net/heroku_2fdba4a684d2921?reconnect=true
