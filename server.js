@@ -13,22 +13,12 @@ const options = {
 };
 
 global.__basedir = __dirname;
-// app.use(cors());
-// // parse requests of content-type - application/json
-// app.use(express.json());
-// app.use(express.static("public"));
-// // parse requests of content-type - application/x-www-form-urlencoded
-// app.use(express.urlencoded({ extended: true }));
-
 app.use(cors());
-app.use(express.static("public"));
-
 // parse requests of content-type - application/json
-app.use(bodyParser.json());
-
+app.use(express.json());
+app.use(express.static("public"));
 // parse requests of content-type - application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true }));
-
+app.use(express.urlencoded({ extended: true }));
 // db.sequelize.sync();
 // simple route
 app.get("/", (req, res) => {
