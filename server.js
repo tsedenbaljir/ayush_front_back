@@ -9,7 +9,7 @@ const fs = require('fs');
 const options = {
 	key: fs.readFileSync('key.key'),
 	cert: fs.readFileSync('nso.pem')
-  };
+};
 
 global.__basedir = __dirname;
 app.use(cors());
@@ -20,12 +20,12 @@ app.use(express.urlencoded({ extended: true }));
 db.sequelize.sync();
 // simple route
 app.get("/", (req, res) => {
-	res.header('X-Frame-Options','SAMEORIGIN');
+	res.header('X-Frame-Options', 'SAMEORIGIN');
 	res.header('Access-Control-Allow-Credentials', true);
 	res.header('Access-Control-Allow-Origin', '*');
-	res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE');
-	res.header('Access-Control-Allow-Headers','X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
-  res.json({ message: "REST API" });
+	res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+	res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
+	res.json({ message: "REST API" });
 });
 // routes
 require("./app/routes/articles.routes")(app);
@@ -36,7 +36,7 @@ require('./app/routes/pages.routes')(app);
 // set port, listen for requests
 // https.createServer(options, app).listen(3001);
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`:Server is running on port ${PORT}.`);
+	console.log(`:Server is running on port ${PORT}.`);
 });
