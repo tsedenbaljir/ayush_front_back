@@ -2,7 +2,7 @@
   "name": "node-js-jwt-auth",
   "version": "1.0.0",
   "homepage": "https://mohs.uv.gov.mn",
-  "proxy": "http://medee.nso.mn:3002",
+  "proxy": "http://103.85.185.66",
   "description": "Node.js Demo for JWT Authentication",
   "main": "server.js",
   "scripts": {
