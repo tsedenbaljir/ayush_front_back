@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const db = require("./app/models");
+const bodyParser = require("body-parser");
 const https = require('https');
 
 const fs = require('fs');
@@ -12,12 +13,23 @@ const options = {
 };
 
 global.__basedir = __dirname;
+// app.use(cors());
+// // parse requests of content-type - application/json
+// app.use(express.json());
+// app.use(express.static("public"));
+// // parse requests of content-type - application/x-www-form-urlencoded
+// app.use(express.urlencoded({ extended: true }));
+
 app.use(cors());
+app.use(express.static("public"));
+
 // parse requests of content-type - application/json
-app.use(express.json());
+app.use(bodyParser.json());
+
 // parse requests of content-type - application/x-www-form-urlencoded
-app.use(express.urlencoded({ extended: true }));
-db.sequelize.sync();
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// db.sequelize.sync();
 // simple route
 app.get("/", (req, res) => {
 	res.header('X-Frame-Options', 'SAMEORIGIN');
@@ -31,7 +43,7 @@ app.get("/", (req, res) => {
 require("./app/routes/articles.routes")(app);
 require('./app/routes/auth.routes')(app);
 require('./app/routes/user.routes')(app);
-require('./app/routes/person.routes')(app);
+// require('./app/routes/person.routes')(app);
 require('./app/routes/pages.routes')(app);
 // set port, listen for requests
 // https.createServer(options, app).listen(3001);
