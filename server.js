@@ -37,7 +37,7 @@ require('./app/routes/pages.routes')(app);
 // set port, listen for requests
 // https.createServer(options, app).listen(3001);
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 80;
 app.listen(PORT, () => {
 	console.log(`:Server is running on port ${PORT}.`);
 });
