@@ -15,10 +15,10 @@ const options = {
 global.__basedir = __dirname;
 app.use(cors());
 // parse requests of content-type - application/json
-app.use(express.json());
-// app.use(express.static("public"));
-// parse requests of content-type - application/x-www-form-urlencoded
-app.use(express.urlencoded({ extended: true }));
+// app.use(express.json());
+// // app.use(express.static("public"));
+// // parse requests of content-type - application/x-www-form-urlencoded
+// app.use(express.urlencoded({ extended: true }));
 // db.sequelize.sync();
 // simple route
 app.get("/", (req, res) => {
@@ -37,7 +37,7 @@ require('./app/routes/pages.routes')(app);
 // set port, listen for requests
 // https.createServer(options, app).listen(3001);
 
-const PORT = process.env.PORT || 80;
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
 	console.log(`:Server is running on port ${PORT}.`);
 });
