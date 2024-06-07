@@ -2,7 +2,6 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const db = require("./app/models");
-const bodyParser = require("body-parser");
 const https = require('https');
 
 const fs = require('fs');
@@ -15,10 +14,9 @@ const options = {
 global.__basedir = __dirname;
 app.use(cors());
 // parse requests of content-type - application/json
-// app.use(express.json());
-// // app.use(express.static("public"));
-// // parse requests of content-type - application/x-www-form-urlencoded
-// app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+// parse requests of content-type - application/x-www-form-urlencoded
+app.use(express.urlencoded({ extended: true }));
 // db.sequelize.sync();
 // simple route
 app.get("/", (req, res) => {
@@ -35,9 +33,9 @@ require('./app/routes/user.routes')(app);
 // require('./app/routes/person.routes')(app);
 require('./app/routes/pages.routes')(app);
 // set port, listen for requests
-// https.createServer(options, app).listen(3001);
+https.createServer(options, app).listen(3001);
 
-const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => {
-	console.log(`:Server is running on port ${PORT}.`);
-});
+// const PORT = process.env.PORT || 3001;
+// app.listen(PORT, () => {
+// 	console.log(`:Server is running on port ${PORT}.`);
+// });
