@@ -1,15 +1,15 @@
 const express = require("express");
 const cors = require("cors");
 const app = express();
-const db = require("./app/models");
-const https = require('https');
+// const db = require("./app/models");
+// const https = require('https');
 
-const fs = require('fs');
+// const fs = require('fs');
 
-const options = {
-	key: fs.readFileSync('key.key'),
-	cert: fs.readFileSync('nso.pem')
-};
+// const options = {
+// 	key: fs.readFileSync('key.key'),
+// 	cert: fs.readFileSync('nso.pem')
+// };
 
 global.__basedir = __dirname;
 app.use(cors());
@@ -33,9 +33,9 @@ require('./app/routes/user.routes')(app);
 // require('./app/routes/person.routes')(app);
 require('./app/routes/pages.routes')(app);
 // set port, listen for requests
-https.createServer(options, app).listen(3001);
+// https.createServer(options, app).listen(3001);
 
-// const PORT = process.env.PORT || 3001;
-// app.listen(PORT, () => {
-// 	console.log(`:Server is running on port ${PORT}.`);
-// });
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => {
+	console.log(`:Server is running on port ${PORT}.`);
+});
