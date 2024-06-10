@@ -21,14 +21,14 @@ module.exports = (app) => {
   });
   // зураг буцаах хэсэг энийг ашиглаж зургийг нийтлэлд хэвлэнэ1
   router.get("/imagesCk/:name", (req, res) => {
-    res.sendFile(`/resources/uploads/${req.params.name}`, {
+    res.sendFile(`/home/ndc-user/ayush_front_back/resources/uploads/${req.params.name}`, {
       root: __basedir,
     });
   });
 
   // зураг буцаах хэсэг энийг ашиглаж зургийг нийтлэлд хэвлэнэ2
   router.get("/images/:name", (req, res) => {
-    res.sendFile(`/resources/uploads/${req.params.name}`, {
+    res.sendFile(`/home/ndc-user/ayush_front_back/resources/uploads/${req.params.name}`, {
       root: __basedir,
     });
   });
